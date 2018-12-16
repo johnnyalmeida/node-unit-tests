@@ -1,0 +1,60 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Node Seed Project
+  description: |
+    Seed Project
+
+    Produção: nome-do-projeto.api.com
+
+    Homologação: nome-do-projeto.homolog-interna.com
+
+host: nome-do-projeto.homolog-internacom
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /user:
+    get:
+      summary: Lista todos os usuários.
+      responses:
+        200:
+          description: Array com todos usuários em forma de objeto
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                description: sempre true em caso de sucesso
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/user'
+
+
+definitions:
+  userStatus:
+    type: number
+    description: Status de um user
+    enum: &userStatus
+      - 0 - valid
+      - 1 - deleted
+
+  user:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      status:
+        $ref: '#/definitions/userStatus'
+      createdAt:
+        type: number
+      updatedAt:
+        type: number
+      canceledAt:
+        type: number
