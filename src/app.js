@@ -8,9 +8,6 @@ const helmet = require('helmet');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const compression = require('compression');
-const i18n = require('./config/i18n');
-const { knex } = require('./config/db');
-const Settings = require('./config/Settings');
 const Logger = require('./helpers/Logger');
 
 /* Routes */
@@ -26,11 +23,9 @@ const LoggerConfig = require('./config/LoggerConfig');
 app.use(helmet());
 app.use(cors());
 app.use(compression());
-app.use(
-  bodyParser.json({
-    limit: process.env.BODY_LIMIT,
-  }),
-);
+app.use(bodyParser.json({
+  limit: process.env.BODY_LIMIT,
+}));
 
 /* Log express request and response */
 LoggerConfig.expressRequest(app);
@@ -38,7 +33,6 @@ LoggerConfig.expressRequest(app);
 /* Status endpoint */
 app.get(['/', '/status'], async (req, res) => {
   try {
-    await knex.raw('SELECT 1');
     res.sendStatus(204);
   } catch (err) {
     Logger.error(err);
@@ -56,7 +50,6 @@ app.all('*', (req, res) => {
   res.status(404).send({ success: false, code: '404' });
 });
 
-debug('load settings');
 (async () => {
   await LoggerConfig.init();
 

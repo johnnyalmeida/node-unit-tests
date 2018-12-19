@@ -1,14 +1,13 @@
 {
-  "name": "nodejs-seed-project",
+  "name": "node-unit-tests",
   "version": "2.0.0",
-  "description": "Seed project created to serve as a starting point for new projects, suggesting some patterns, dependencies/pacakges and style guide.",
+  "description": "Seed unit test project based on 4all's Seed Project.",
   "main": "src/app.js",
   "scripts": {
     "start": "pm2 start process.yml",
     "stop": "pm2 stop process.yml",
     "restart": "pm2 restart process.yml",
     "dev": "nodemon src/app.js",
-    "test:unit": "mocha --opts test/unit/mocha.opts test/unit/**/*.js",
     "test:coverage": "nyc ava",
     "lint": "eslint '**/*.js'",
     "lint:fix": "eslint '**/*.js' --fix",
@@ -16,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/johnnyalmeida/node-unit-test"
+    "url": "https://github.com/johnnyalmeida/node-unit-tests"
   },
   "keywords": [
     "seed",
@@ -33,7 +32,6 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "chai": "^4.2.0",
     "compression": "^1.7.3",
     "cors": "^2.8.5",
     "debug": "^4.1.0",
@@ -56,8 +54,6 @@
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^12.0.2",
     "eslint-plugin-import": "^2.14.0",
-    "mocha": "^5.2.0",
-    "nyc": "^13.1.0",
-    "testdouble": "^3.9.1"
+    "nyc": "^13.1.0"
   }
 }

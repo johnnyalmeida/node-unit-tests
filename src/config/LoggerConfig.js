@@ -5,7 +5,6 @@ const debug = require('request-debug');
 const moment = require('moment-timezone');
 const { clone, each } = require('lodash');
 const Logger = require('../helpers/Logger');
-const Settings = require('./Settings');
 
 const instances = {
   init: false,
@@ -157,13 +156,12 @@ class LoggerConfig {
   static getLoggerOptions() {
     const requestFilterBlacklist = ['headers', 'httpVersion', 'originalUrl', 'url', 'query', 'method'];
     const responseFilterBlacklist = [];
-    const bodyBlacklist = Settings.get('LOG_BODY_BLACKLIST') || [];
     const ignoredRoutes = ['/', '/status', '/favicon.ico'];
     const ignoredMethods = ['OPTIONS'];
     return {
       winstonInstance: winston,
       meta: true,
-      msg: `HTTP method={{req.method}} route={{req.originalUrl.split('?')[0]}} query={{JSON.stringify(req.query)}} origin={{req.ip}} size={{res._size}}B`,
+      msg: 'HTTP method={{req.method}} route={{req.originalUrl.split(\'?\')[0]}} query={{JSON.stringify(req.query)}} origin={{req.ip}} size={{res._size}}B',
       expressFormat: false,
       colorStatus: true,
       ignoredRoutes,
@@ -195,7 +193,7 @@ class LoggerConfig {
       skip: (req) => {
         const method = req.method.toUpperCase();
         return ignoredMethods.includes(method);
-      }
+      },
     };
   }
 }
