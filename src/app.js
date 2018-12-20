@@ -10,9 +10,6 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const Logger = require('./helpers/Logger');
 
-/* Routes */
-const userRoutes = require('./routes/user');
-
 /* Express initialization */
 const app = express();
 
@@ -40,8 +37,6 @@ app.get(['/', '/status'], async (req, res) => {
   }
 });
 
-/* Instatiate routes */
-app.use('/user', userRoutes);
 
 /* Log errors */
 LoggerConfig.expressError(app);

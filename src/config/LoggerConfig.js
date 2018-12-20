@@ -176,10 +176,6 @@ class LoggerConfig {
           return undefined;
         }
 
-        if (propName === 'body' && res[propName] && bodyBlacklist.length > 0) {
-          return LoggerConfig.replacePropertyValue(bodyBlacklist, res[propName]);
-        }
-
         return res[propName];
       },
       dynamicMeta: (req) => {
