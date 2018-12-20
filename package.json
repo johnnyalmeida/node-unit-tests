@@ -8,10 +8,8 @@
     "stop": "pm2 stop process.yml",
     "restart": "pm2 restart process.yml",
     "dev": "nodemon src/app.js",
-    "test:coverage": "nyc ava",
     "lint": "eslint '**/*.js'",
-    "lint:fix": "eslint '**/*.js' --fix",
-    "cover": "nyc report --reporter=text-lcov | coveralls"
+    "lint:fix": "eslint '**/*.js' --fix"
   },
   "repository": {
     "type": "git",
