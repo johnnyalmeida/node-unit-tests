@@ -1,18 +1,19 @@
 class UserController {
-  constructor() {
-    this.user = {};
+  constructor(UserModel) {
+    this.userModel = UserModel;
   }
-  create(data) {
+
+  async post(data) {
     if (!data.doTests) {
       return {
         user: false,
       };
     }
 
-    this.user = data;
+    const createdUser = await this.userModel.post(data);
 
     return {
-      user: this.user,
+      user: createdUser,
     };
   }
 }

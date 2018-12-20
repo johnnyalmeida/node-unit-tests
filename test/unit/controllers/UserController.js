@@ -1,7 +1,19 @@
+require('ava');
 const UserController = require('../../../src/controllers/UserController');
 
 describe('User Controller', () => {
-  it('should create an user', () => {
+  let UserModel;
+
+  beforeEach((done) => {
+    UserModel = td.replace('../../../src/models/BooksModel', {
+      post: td.func(),
+    });
+    done();
+  });
+
+  afterEach(() => { td.reset(); });
+
+  it('should create an user', (done) => {
     const userToCreate = {
       id: '1',
       name: 'Johnny Almeida',
@@ -10,17 +22,17 @@ describe('User Controller', () => {
       doTests: true,
     };
 
-    const userContoller = new UserController();
-    const res = userContoller.create(userToCreate);
+    td.when(UserModel.post(userToCreate)).thenResolve({ id: userToCreate.id });
 
-    expect(res.user.id).to.be.eql(userToCreate.id);
-    expect(res.user.name).to.be.eql(userToCreate.name);
-    expect(res.user.age).to.be.eql(userToCreate.age);
-    expect(res.user.team).to.be.eql(userToCreate.team);
-    expect(res.user.doTests).to.be.eql(userToCreate.doTests);
+    const userController = new UserController(UserModel);
+    userController.post(userToCreate)
+      .then((res) => {
+        expect(res.user.id).to.be.eql(userToCreate.id);
+        done();
+      });
   });
 
-  it('should not create an user', () => {
+  it('should not create an user', (done) => {
     const userToCreate = {
       id: '2',
       name: 'Diogo Costa',
@@ -29,10 +41,14 @@ describe('User Controller', () => {
       doTests: false,
     };
 
-    const userController = new UserController();
+    td.when(UserModel.post(userToCreate)).thenResolve({ id: userToCreate.id });
 
-    const res = userController.create(userToCreate);
+    const userController = new UserController(UserModel);
 
-    expect(res.user).to.be.eql(false);
+    userController.post(userToCreate)
+      .then((res) => {
+        expect(res.user).to.be.eql(false);
+        done();
+      });
   });
 });
