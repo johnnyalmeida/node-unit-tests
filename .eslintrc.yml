@@ -8,3 +8,8 @@ globals:
   __: true
   describe: true
   it: true
+  expect: true
+  td: true
+  beforeEach: true
+  afterEach: true
+  request: true

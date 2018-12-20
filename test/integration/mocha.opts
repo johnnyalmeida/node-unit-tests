@@ -1,0 +1,4 @@
+--require test/integration/helpers.js
+--timeout 20000
+--recursive
+--slow 500

@@ -37,6 +37,7 @@ app.get(['/', '/status'], async (req, res) => {
   }
 });
 
+app.use('/users', require('./routes/users'));
 
 /* Log errors */
 LoggerConfig.expressError(app);
@@ -53,3 +54,5 @@ app.all('*', (req, res) => {
     debug(`Server started on port ${process.env.PORT}`);
   });
 })();
+
+module.exports = app;
