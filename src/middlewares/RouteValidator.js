@@ -1,7 +1,6 @@
 const Joi = require('joi');
 
 class RouteValidator {
-
   static validate(schema) {
     return this._validate.bind(schema);
   }

@@ -2,7 +2,6 @@ const winston = require('winston');
 
 /* Logger use RFC5424 */
 class Logger {
-
   static emerg(...emerg) {
     winston.log('emerg', ...emerg);
   }

@@ -9,7 +9,7 @@
     "restart": "pm2 restart process.yml",
     "dev": "nodemon src/app.js",
     "test:unit": "mocha --opts test/unit/mocha.opts test/unit/**/*.js",
-    "lint": "eslint '**/*.js'",
+    "lint": "eslint 'src/**/*.js'",
     "lint:fix": "eslint '**/*.js' --fix"
   },
   "repository": {
