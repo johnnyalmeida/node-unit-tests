@@ -1,18 +1,18 @@
-const UserModel = require('../models/UserModel');
-
 class UserController {
-  static create(data) {
+  constructor() {
+    this.user = {};
+  }
+  create(data) {
     if (!data.doTests) {
       return {
         user: false,
       };
     }
 
-    const userModel = new UserModel(data);
-    const user = userModel.get();
+    this.user = data;
 
     return {
-      user,
+      user: this.user,
     };
   }
 }

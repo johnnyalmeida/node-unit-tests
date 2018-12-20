@@ -1,6 +1,6 @@
 const UserController = require('../../../src/controllers/UserController');
 
-describe('User  Controller', () => {
+describe('User Controller', () => {
   it('should create an user', () => {
     const userToCreate = {
       id: '1',
@@ -10,7 +10,8 @@ describe('User  Controller', () => {
       doTests: true,
     };
 
-    const res = UserController.create(userToCreate);
+    const userContoller = new UserController();
+    const res = userContoller.create(userToCreate);
 
     expect(res.user.id).to.be.eql(userToCreate.id);
     expect(res.user.name).to.be.eql(userToCreate.name);
@@ -28,7 +29,9 @@ describe('User  Controller', () => {
       doTests: false,
     };
 
-    const res = UserController.create(userToCreate);
+    const userController = new UserController();
+
+    const res = userController.create(userToCreate);
 
     expect(res.user).to.be.eql(false);
   });
