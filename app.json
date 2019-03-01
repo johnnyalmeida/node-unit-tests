@@ -1,0 +1,20 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "description": "",
+  "env": {
+    "NODE_ENV": "test"
+  },
+  "formation": {
+  },
+  "name": "node-unit-tests",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
