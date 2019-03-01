@@ -9,15 +9,8 @@
   ],
   "description": "",
   "env": {
-    "DB_HOST": {
-      "description": "Database host.",
-      "value": "http://loremipsum.com:3306"
-    },
-    "WEB_CONCURRENCY": {
-      "description": "The number of processes to run.",
-      "value": "2"
-    }
-  }
+    "NODE_ENV": "test"
+  },
   "formation": {
   },
   "name": "node-unit-tests",
